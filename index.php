@@ -9,100 +9,30 @@
 
 	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
-<body>
+<body style="background-color: grey">
 		<div class="container">
-
-<form method="post" action="index.php" enctype="mutipart/form-data">
+   <form style="margin-top: 20px" align="center" method="post" action="index.php" enctype="mutipart/form-data">
 	<input type="text" id="fight" name="name" placeholder ="name" required/>
 	<input type="submit" name="submit" value="NEW HERO"/>
 </form>
-<form method="post" action="index.php" enctype="mutipart/form-data">
+<form style="margin-top: 20px" method="post" action="index.php" enctype="mutipart/form-data">
 	<input type="submit" name="submit2" value="FIGHT TO DEATH" />
 </form>
-<form method="post" action="index.php" enctype="mutipart/form-data">
+<form style="margin-top: 20px " align="right" method="post" action="index.php" enctype="mutipart/form-data">
 	<input type="submit" name="submit3" value="BECOME CHAMPION"/>
+</form>
+<form style="margin-top: 40px " align="center" method="post" action="index.php" enctype="mutipart/form-data">
+	<input type="submit" name="submit4" value="DISPLAY SCORE"/>
 </form>
 </div>
 <script src="fighter.js"></script>
 
 </body>
 <?php
-		
-
-		?>
-<?php
-	
-
-	if(isset($_POST['submit']))
-	{
-
-		$con=mysqli_connect('localhost','root','','pix-fight');
-	$name=$_POST['name'];
-	$qry="INSERT INTO `hero`(`name`) VALUES ('$name')";
-
-	$run=mysqli_query($con,$qry);
-	if($run == true)
-	{
-		?>
-		<script>
-			alert('player created successfully');
-		</script>
-		<?php
-	}
-	}
-
-	
-?>
-
-<?php
-		
-
-		if(isset($_POST['submit2'])){
-$con=mysqli_connect('localhost','root','','pix-fight');
-		$sql="SELECT * FROM hero";
-		$res= mysqli_query($con,$sql);
-		$datas= array();
-
-		if(mysqli_num_rows($res)>2){
-			while($row= mysqli_fetch_assoc($res)){
-				$datas[]=$row;
-			}
-		}
-
-		foreach ($datas as $data) {
-			  $data['id'];
-			}
-		$a=rand(5,$data['id']);
-		$b=rand($a,$data['id']);
-			<script>
-			alert('player are fighting,click for more fight');
-		</script
-
-		$winid=rand(($a*$b)/$b,($a*$b)/$b,);
-		if(isset($_GET['submit2'])){
-		$con=mysqli_connect('localhost','root','','pix-fight');
-		if($winid==$a){
-			$score=10;
-		$sqlq="UPDATE hero SET win= (SELECT(win)+1) WHERE id='$winid'";
-		$run=mysqli_query($con,$sqlq);
-		$resul=mysqli_query($con,$sqlq);
-		}
-
-
-	}
-}
-
-		if(isset($_POST['submit3'])){
-			$con=mysqli_connect('localhost','root','','pix-fight');
-			$sqll="SELECT name,id FROM hero WHERE win=(SELECT MAX(win) FROM hero)";
-		$run=mysqli_query($con,$sqll);
-		$result=mysqli_query($con,$sqll);
-		if($result->num_rows>0){
-			while($row=$result->fetch_assoc()){
-				echo "the winner is with the id : " .$row["id"];
-			}
-		}
-	}	
-		
+include('dbcon.php');
+include('insert.php');
+include('update.php');
+include('winner.php');
+include('display.php');
 ?>
 </html>
