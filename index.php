@@ -74,6 +74,9 @@ $con=mysqli_connect('localhost','root','','pix-fight');
 			}
 		$a=rand(5,$data['id']);
 		$b=rand($a,$data['id']);
+			<script>
+			alert('player are fighting,click for more fight');
+		</script
 
 		$winid=rand(($a*$b)/$b,($a*$b)/$b,);
 		if(isset($_GET['submit2'])){
